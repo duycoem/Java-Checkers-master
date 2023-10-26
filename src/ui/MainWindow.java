@@ -1,9 +1,17 @@
 package ui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class MainWindow extends JFrame {
 
@@ -23,11 +31,17 @@ public class MainWindow extends JFrame {
         super(DEFAULT_TITLE);
         super.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         super.setLocationByPlatform(true);
-        super.setLayout(null);
 
+        // Setup button
         JButton startBtn = new JButton("Start game");
-        // Setup button start to center of frame
-        startBtn.setBounds(DEFAULT_WIDTH / 2 - DEFAULT_WIDTH_BUTTON / 2, DEFAULT_HEIGHT / 2 - DEFAULT_HEIGHT_BUTTON / 2, DEFAULT_WIDTH_BUTTON, DEFAULT_HEIGHT_BUTTON);
+        startBtn.setSize(DEFAULT_WIDTH_BUTTON, DEFAULT_HEIGHT_BUTTON);
+        startBtn.setBackground(Color.BLUE);
+        startBtn.setContentAreaFilled(false);
+        startBtn.setOpaque(true);
+        startBtn.setBorderPainted(false);
+        startBtn.setFont(new Font("Arial", Font.PLAIN, 16));
+        startBtn.setHorizontalAlignment(JButton.CENTER);
+        startBtn.setVerticalAlignment(JButton.CENTER);
 
         // Add listener for button
         startBtn.addActionListener(e -> {
@@ -40,7 +54,20 @@ public class MainWindow extends JFrame {
             // Close current frame
             this.dispose();
         });
-        // Add button to frame
-        this.add(startBtn);
+
+        JPanel panelButton = new JPanel();
+        panelButton.setLayout(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        JPanel buttons = new JPanel(new GridBagLayout());
+        buttons.add(startBtn, gbc);
+
+        gbc.weighty = 1;
+        panelButton.add(buttons, gbc);
+
+        this.add(panelButton);
     }
 }
