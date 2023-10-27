@@ -35,7 +35,8 @@ public class MainWindow extends JFrame {
         // Setup button
         JButton startBtn = new JButton("Start game");
         startBtn.setSize(DEFAULT_WIDTH_BUTTON, DEFAULT_HEIGHT_BUTTON);
-        startBtn.setBackground(Color.BLUE);
+        startBtn.setFocusPainted(false);
+        startBtn.setBackground(Color.RED);
         startBtn.setContentAreaFilled(false);
         startBtn.setOpaque(true);
         startBtn.setBorderPainted(false);
@@ -56,6 +57,7 @@ public class MainWindow extends JFrame {
         });
 
         JPanel panelButton = new JPanel();
+        panelButton.setBackground(Color.BLUE);
         panelButton.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
